@@ -29,6 +29,31 @@ $response = $app->getClient()->postJson("v3/pay/transactions/jsapi", [
 ```
 
 </details>
+ 
+  
+<details>
+    <summary>APP 下单</summary>
+
+> 官方文档：<https://pay.weixin.qq.com/wiki/doc/apiv3/apis/chapter3_2_1.shtml>
+
+### 注意一点参数严格按照微信管理的数据类似，否则会报400错误
+```php
+$response = $app->getClient()->postJson("v3/pay/transactions/app", [
+   "mchid" => "1518700000", // <---- 请修改为您的商户号
+   "out_trade_no" => "native12177525012012070352333'.rand(1,1000).'",
+   "appid" => "wx6222e9f48a0xxxxx", // <---- 请修改为服务号的 appid
+   "description" => "Image形象店-深圳腾大-QQ公仔",
+   "notify_url" => "https://www.tanqub.com/",
+   "amount" => [
+        "total" => 1,
+        "currency" => "CNY"
+    ]
+]);
+
+\dd($response->toArray(false));
+```
+
+</details>
 
 
 <details>
